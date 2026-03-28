@@ -50,13 +50,19 @@ const NewsCard = ({ news }) => {
 
       {/* Content */}
       <div className="card-body pt-3">
-        <p className="text-sm text-gray-600">
-          {details.length > 200 ? details.slice(0, 200) + "..." : details}
-        </p>
-
-        <button className="text-orange-500 font-semibold text-sm mt-1 w-fit">
-          Read More
-        </button>
+        {/* Details */}
+        <div className="px-4 text-accent">
+          {details.length > 200 ? (
+            <>
+              {details.slice(0, 200)}...
+              <span className="font-semibold cursor-pointer hover:underline text-orange-400">
+                Read More
+              </span>
+            </>
+          ) : (
+            <>{details}</>
+          )}
+        </div>
 
         <div className="divider my-2"></div>
 
@@ -64,11 +70,14 @@ const NewsCard = ({ news }) => {
         <div className="flex justify-between items-center text-sm">
           {/* Rating */}
           <div className="flex items-center gap-2 text-orange-400">
-            <FaStar size={18} />
+            {/* <FaStar size={18} />
 
             <span className="font-medium text-gray-700 text-lg">
               {rating?.number}
-            </span>
+            </span> */}
+            {Array.from({ length: rating.number }).map((_, i) => (
+              <FaStar size={18} />
+            ))}
           </div>
 
           {/* Views */}
